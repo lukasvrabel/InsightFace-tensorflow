@@ -28,11 +28,16 @@ def get_args():
 def load_image(path, image_size):
     print('reading %s' % path)
     if os.path.isdir(path):
-        paths = list(os.listdir(path))
+        paths = []
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                paths.append(os.path.join(root, file))
+#         paths = [os.path.join(path, filename) for filename in list(os.listdir(path))]
     else:
         paths = [path]
     images = []
     images_f = []
+    print('file count:', len(paths))
     for path in paths:
         img = misc.imread(path)
         img = misc.imresize(img, [image_size, image_size])
@@ -112,7 +117,7 @@ if __name__ == '__main__':
             embds_arr = embds_arr/np.linalg.norm(embds_arr, axis=1, keepdims=True)
             print('done!')
             print('saving...')
-            embds_dict = dict(*zip(fns, list(embds_arr)))
+            embds_dict = {fn: emb for fn, emb in zip(fns, list(embds_arr))}
             pickle.dump(embds_dict, open(args.save_path, 'wb'))
             print('done!')
 
