@@ -1,0 +1,13 @@
+version: '2.3'
+
+services:
+    jupyter:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/project
+            - ../../data:/data
+        ports:
+            - 8765:8888
+
