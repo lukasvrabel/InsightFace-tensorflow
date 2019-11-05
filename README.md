@@ -1,3 +1,12 @@
+## Fork Changes:
+- added requirements.txt
+- added Dockerfile + docker compose with 
+- changed `get_embs.py` to work with subdirectories
+
+To build and run docker container, use `docker-compose up --build`
+
+Original README continues below:
+
 # InsightFace-tensorflow
 
 This is a tensorflow implementation of paper "[ArcFace: Additive Angular Margin Loss for Deep Face Recognition](https://arxiv.org/abs/1801.07698)". This implementation aims at making both usage of pretrained model and training of your own model easier. Whether you just want to use pretrained model to do face recognition/verification or you want train/finetune your own model, this project can give you a favor. An introduction on face recognition losses can be found [here](https://luckycallor.xyz/20190123/FaceLosses.html)(in Chinese).
